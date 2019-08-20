@@ -1,14 +1,16 @@
-from flask import Flask, escape, request
+from flask import Flask, escape, request, render_template
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello():
-    name = request.args.get("name", "World")
-    return f'Hello, {escape(name)}!'
+    return render_template('index.html')
 
 
 @app.route('/set-led', methods=['POST'])
 def set_led_handler():
-    pass
+    print(request.is_json)
+    content = request.get_json()
+    print(content)
+    return 'JSON posted'
