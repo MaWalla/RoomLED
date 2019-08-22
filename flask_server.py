@@ -1,4 +1,5 @@
 from flask import Flask, escape, request, render_template
+from werkzeug.exceptions import BadRequest
 
 from utils.interpreter import ValidateJson
 
@@ -13,7 +14,10 @@ def hello():
 @app.route('/set-led', methods=['POST'])
 def set_led_handler():
     if request.is_json:
-        handled_json = ValidateJson(request.get_json())
+        try:
+            handled_json = ValidateJson(request.get_json())
+        except BadRequest:
+            return 'Bad Request, the posted JSON possibly contains errors.'
         if handled_json.validated:
             return 'OK Cool'
         else:
