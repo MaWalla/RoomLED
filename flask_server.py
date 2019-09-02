@@ -3,15 +3,15 @@ from werkzeug.exceptions import BadRequest
 
 from utils.interpreter import ValidateJson
 
-app = Flask(__name__)
+server = Flask('RoomLED')
 
 
-@app.route('/')
+@server.route('/')
 def hello():
     return render_template('index.html')
 
 
-@app.route('/set-led', methods=['POST'])
+@server.route('/set-led', methods=['POST'])
 def set_led_handler():
     if request.is_json:
         try:
