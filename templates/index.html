@@ -42,7 +42,59 @@
                 hex values can also be used:
                 "{'leds2': {'gradient': ['#ff2519', '#3eb']}}"
             </p></li>
+            <li><p>
+                'raveparty'
+                whoever is epileptical shouldn't get close to this
+                e.g "{'leds1': {'raveparty': 30}}"
+                the number value is the delay between rgb flashes
+            </p></li>
         </ul>
+    </div>
+
+    <div>
+        <p>You will need a config file with all devices, their type, ip address and LED count (and/or possibly some some other info)</p>
+        <p>
+            An example could look like this:
+
+            {
+                "sideboard": {
+                    "type": "nodemcu",
+                    "ip": "192.168.5.100",
+                    "leds": 105
+                },
+                "window": {
+                    "type": "nodemcu",
+                    "ip": "192.168.5.101",
+                    "leds": 65
+                },
+                "computer": {
+                    "type": "computer",
+                    "ip": "192.168.5.10",
+                    "devices": {
+                        "arduino": {
+                        "type": "1d",
+                        "leds": 32
+                        },
+                        "blackwidow": {
+                        "type": "2d",
+                        "x": 22,
+                        "y": 6
+                        },
+                        "launchpad": {
+                        "type": "2d",
+                        "x": 8,
+                        "y": 8
+                        }
+                    }
+                },
+                "phone": {
+                    "type": "phone",
+                    "ip": "192.168.5.11"
+                }
+            }
+
+            Note that the given devices are the only supported ones right now
+        </p>
     </div>
 </body>
 </html>
