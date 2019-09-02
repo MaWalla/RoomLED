@@ -26,21 +26,36 @@ class ValidateJson:
 
     @staticmethod
     def check_mode(key, value):
-        if type(value) is str:
-            if value[0] == '#':
-                if len(value) == 7 or len(value) == 3:
-                    return True
-            elif value in MODES:
+        if type(value) is dict or type(value) is str:
+            if value == 'random':
                 return True
-        elif type(value) is list:
-            if len(value) == 3:
-                return True
+            mode, settings = list(value.items())
+            if mode is 'individual':
+                if type(settings) is dict:
+                    if 0 < len(settings) <= LED_STRIP_LENGTH[key]:
+                        for led, rgb in settings:
+                            try:
+                                int(led)
+                            except ValueError:
+                                return False
+        return True  # TODO finish implementing validation lol
 
-        elif type(value) is dict:
-            for led, rgb in value.items():
-                if type(led) is str and int(led) < LED_STRIP_LENGTH.get(key):  # TODO try catch for nonetype or keyerror
-                    if type(rgb) is list and len(rgb) == 3:
-                        return True  # TODO Check List for int (or convert while cleaning maybe)
-                    else:
-                        return False
-        return False
+
+        # if type(value) is str:
+        #     if value[0] == '#':
+        #         if len(value) == 7 or len(value) == 3:
+        #             return True
+        #     elif value in MODES:
+        #         return True
+        # elif type(value) is list:
+        #     if len(value) == 3:
+        #         return True
+        #
+        # elif type(value) is dict:
+        #     for led, rgb in value.items():
+        #         if type(led) is str and int(led) < LED_STRIP_LENGTH.get(key):  # TODO try catch for nonetype or keyerror
+        #             if type(rgb) is list and len(rgb) == 3:
+        #                 return True  # TODO Check List for int (or convert while cleaning maybe)
+        #             else:
+        #                 return False
+        # return False
