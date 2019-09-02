@@ -40,7 +40,6 @@ class ValidateJson:
                                 return False
         return True  # TODO finish implementing validation lol
 
-
         # if type(value) is str:
         #     if value[0] == '#':
         #         if len(value) == 7 or len(value) == 3:
@@ -59,3 +58,6 @@ class ValidateJson:
         #             else:
         #                 return False
         # return False
+
+    def post_json(self):
+        pass
