@@ -17,18 +17,30 @@
 
         <ul>
             <li><p>
-                {'0':[r,g,b], '1':[r,g,b], ...}
-                for each led in the strip
+                'individual'
                 to assign an individual colour value
+                for each led in the strip
+                {'leds1': {'individual': {'0': [r, g, b], '1': '#12df63'}}}
             </p></li>
             <li><p>
-                '#abcdef' or '#123' or [128, 32, 48]
+                'colour'
                 to colour the entire strip in 1 colour
+                e.g. {'leds1': {'colour': '#abc'}}
+                both hex and rgb lists work like:
+                '#abcdef' or '#123' or [128, 32, 48]
             </p></li>
             <li><p>
                 'random'
                 well, it does what you'd expect.
                 Each run presents a new colourful result!
+                "{'leds1': 'random'}"
+            </p></li>
+            <li><p>
+                'gradient'
+                input a list with 2 rgb values
+                e.g "{'leds1': {'gradient': [[12, 242, 55], [11, 9, 233]]}}"
+                hex values can also be used:
+                "{'leds2': {'gradient': ['#ff2519', '#3eb']}}"
             </p></li>
         </ul>
     </div>
