@@ -8,7 +8,7 @@ try:
         config = json.loads(data)
 except FileNotFoundError:
     print('No config found!')
-    print('Please create one by referring to the servers index page.')
+    print('Please create one by referring to the servers cheat-sheet page.')
     print('Therefore the server will run but you won\'t be able to operate anything...')
     config = None
 

@@ -7,8 +7,13 @@ server = Flask('RoomLED')
 
 
 @server.route('/')
-def hello():
+def index():
     return render_template('index.html')
+
+
+@server.route('/cheat-sheet')
+def cheat_sheet():
+    return render_template('cheat-sheet.html')
 
 
 @server.route('/set-led', methods=['POST'])
