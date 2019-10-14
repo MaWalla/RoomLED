@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>RoomLED Server</title>
 </head>
-<body>
+    <body>
+        <a href="/cheat-sheet">To the cheat sheet!</a>
 
-</body>
+        <form action="/led-form" method="post">
+            <label for="nodemcu-1">NodeMCU 1 (Desk)</label>
+            <input id="nodemcu-1" name="nodemcu-1" type="checkbox"/>
+            <label for="nodemcu-2">NodeMCU 2 (Sideboard)</label>
+            <input id="nodemcu-2" name="nodemcu-2" type="checkbox"/>
+            <label for="nodemcu-3">NodeMCU 3 (Bed)</label>
+            <input id="nodemcu-3" name="nodemcu-3" type="checkbox"/>
+
+            <label for="mode">Color Mode</label>
+            <select id="mode" name="mode">
+                <option value="individual">Individual</option>
+                <option value="single_color">Single Color</option>
+                <option value="gradient">Gradient</option>
+                <option value="random">Random</option>
+                <option value="off">Off</option>
+            </select>
+
+            <label for="color1">Color 1 (if required)</label>
+            <input id="color1" name="color1" type="text">
+            <label for="color2">Color 2 (if required)</label>
+            <input id="color2" name="color2" type="text">
+
+            <button type="submit">Set Color</button>
+        </form>
+    </body>
 </html>
