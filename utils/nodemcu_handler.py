@@ -1,6 +1,6 @@
 import urllib.request
 import json
-import json
+from urllib.error import URLError
 
 try:
     with open('config.json', 'r') as config_file:
@@ -11,6 +11,7 @@ except FileNotFoundError:
     print('Please create one by referring to the servers cheat-sheet page.')
     print('Therefore the server will run but you won\'t be able to operate anything...')
     config = None
+
 
 class NodeMCUHandler:
 
@@ -50,12 +51,13 @@ class NodeMCUHandler:
         for nodemcu in self.data:
             url = f'http://{nodemcu["ip"]}:{port}'
             request = urllib.request.Request(url)
-            # request.add_header('Content-Type', 'application/json; charset=utf-8')
             json_data = json.dumps(nodemcu['mode'])
             json_data_bytes = json_data.encode('utf-8')
-            # request.add_header('Content-Length', len(json_data_bytes))
             request.add_header('Content', json_data_bytes)
-            urllib.request.urlopen(request)
+            try:
+                urllib.request.urlopen(request)
+            except URLError:
+                pass
 
     @staticmethod
     def color_convert(color):
