@@ -42,7 +42,14 @@ class NodeMCUHandler:
             mode = {
                 values.get('mode'): {'input_color': color1}
             }
-        # TODO add color 2 integration
+        elif values.get('mode') == 'gradient':
+            mode = {
+                values.get('mode'): {'input_color1': color1, 'input_color2': color2}
+            }
+        elif values.get('mode') == 'random':
+            mode = {
+                values.get('mode'): None
+            }
 
         for nodemcu in self.data:
             nodemcu['mode'] = mode
