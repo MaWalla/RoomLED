@@ -1,4 +1,4 @@
-from flask import Flask, escape, request, render_template, redirect
+from flask import Flask, escape, request, render_template, redirect, send_from_directory
 from werkzeug.exceptions import BadRequest
 
 from utils.interpreter import ValidateJson
@@ -36,3 +36,17 @@ def set_led_handler():
         else:
             return 'Nah man, I cannot work with that'
     return 'Not JSON enough'
+
+
+@server.route('/js/<path:path>')
+def send_js(path):
+    return send_from_directory('js', path)
+
+
+@server.route('/css/<path:path>')
+def send_css(path):
+    return send_from_directory('css', path)
+
+@server.route('/img/<path:path>')
+def send_img(path):
+    return send_from_directory('img', path)

@@ -1,0 +1,22 @@
+.logo-small {
+    height: 32px;
+}
+
+.checkbox {
+    width: 32px;
+    height: 32px;
+}
+
+.input-scale {
+    width: 128px;
+    height: 32px;
+}
+
+.darkmode {
+    background-color: #081012;
+    color: #FFFFFF
+}
+
+.form-group {
+    height: 48px;
+}

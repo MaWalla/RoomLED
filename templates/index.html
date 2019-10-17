@@ -2,34 +2,89 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>RoomLED Server</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
-    <body>
-        <a href="/cheat-sheet">To the cheat sheet!</a>
+    <body class="darkmode">
+        <nav class="navbar navbar-light bg-dark">
+            <a class="navbar-brand-link" href="/">
+                <img class="navbar-brand logo-small" src="img/logo.png" alt="Logo">
+            </a>
 
-        <form action="/led-form" method="post">
-            <label for="nodemcu-1">NodeMCU 1 (Desk)</label>
-            <input id="nodemcu-1" name="nodemcu-1" type="checkbox"/>
-            <label for="nodemcu-2">NodeMCU 2 (Sideboard)</label>
-            <input id="nodemcu-2" name="nodemcu-2" type="checkbox"/>
-            <label for="nodemcu-3">NodeMCU 3 (Bed)</label>
-            <input id="nodemcu-3" name="nodemcu-3" type="checkbox"/>
+            <ul class="navbar-nav">
+                <li class="nav"><a href="/cheat-sheet">To the cheat sheet!</a></li>
+            </ul>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-2 col-lg-1"></div>
+                <div class="col-xl-8 col-md-10">
+                    <form class="mt-5" action="/led-form" method="post">
+                        <div class="form-group row">
+                            <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                                <label for="nodemcu-1">NodeMCU 1 (Desk)</label>
+                            </div>
+                            <div class="col-6 col-sm-7 col-md-8 col-lg-8 col-xl-9">
+                                <input id="nodemcu-1" class="checkbox" name="nodemcu-1" type="checkbox"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                                <label for="nodemcu-2">NodeMCU 2 (Sideboard)</label>
+                            </div>
+                            <div class="col-6 col-sm-7 col-md-8 col-lg-8 col-xl-9">
+                                <input id="nodemcu-2" class="checkbox" name="nodemcu-2" type="checkbox"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                                <label for="nodemcu-3">NodeMCU 3 (Bed)</label>
+                            </div>
+                            <div class="col-6 col-sm-7 col-md-8 col-lg-8 col-xl-9">
+                                <input id="nodemcu-3" class="checkbox" name="nodemcu-3" type="checkbox"/>
+                            </div>
+                        </div>
 
-            <label for="mode">Color Mode</label>
-            <select id="mode" name="mode">
-                <option value="individual">Individual</option>
-                <option value="single_color">Single Color</option>
-                <option value="gradient">Gradient</option>
-                <option value="random">Random</option>
-                <option value="off">Off</option>
-            </select>
+                        <div class="form-group row">
+                            <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                                <label for="mode">Color Mode</label>
+                            </div>
+                            <div class="col-6 col-sm-7 col-md-8 col-lg-8 col-xl-9">
+                                <select id="mode" class="input-scale" name="mode">
+                                    <option value="individual">Individual</option>
+                                    <option value="single_color">Single Color</option>
+                                    <option value="gradient">Gradient</option>
+                                    <option value="random">Random</option>
+                                    <option value="off">Off</option>
+                                </select>
+                            </div>
+                        </div>
 
-            <label for="color1">Color 1 (if required)</label>
-            <input id="color1" name="color1" type="text">
-            <label for="color2">Color 2 (if required)</label>
-            <input id="color2" name="color2" type="text">
+                        <div class="form-group row">
+                            <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                                <label for="color1">Color 1 (if required)</label>
+                            </div>
+                            <div class="col-6 col-sm-7 col-md-8 col-lg-8 col-xl-9">
+                                <input id="color1" class="input-scale" name="color1" type="color">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                                <label for="color2">Color 2 (if required)</label>
+                            </div>
+                            <div class="col-6 col-sm-7 col-md-8 col-lg-8 col-xl-9">
+                                <input id="color2" class="input-scale" name="color2" type="color">
+                            </div>
+                        </div>
 
-            <button type="submit">Set Color</button>
-        </form>
+                        <button class="btn btn-dark" type="submit">Set Color</button>
+                    </form>
+                </div>
+                <div class="col-xl-2 col-lg-1"></div>
+            </div>
+        </div>
     </body>
+    <script src="js/main.js"></script>
 </html>
