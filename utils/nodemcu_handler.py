@@ -1,16 +1,29 @@
 import urllib.request
 import json
+import threading
 from urllib.error import URLError
 
 try:
     with open('config.json', 'r') as config_file:
-        data = config_file.read()
-        config = json.loads(data)
+        content = config_file.read()
+        config = json.loads(content)
 except FileNotFoundError:
     print('No config found!')
     print('Please create one by referring to the servers cheat-sheet page.')
     print('Therefore the server will run but you won\'t be able to operate anything...')
     config = None
+
+
+def send_request(data, port=5000):
+        url = f'http://{data["ip"]}:{port}'
+        request = urllib.request.Request(url)
+        json_data = json.dumps(data['mode'])
+        json_data_bytes = json_data.encode('utf-8')
+        request.add_header('Content', json_data_bytes)
+        try:
+            urllib.request.urlopen(request)
+        except URLError:
+            pass
 
 
 class NodeMCUHandler:
@@ -54,17 +67,10 @@ class NodeMCUHandler:
         for nodemcu in self.data:
             nodemcu['mode'] = mode
 
-    def send_data(self, port=5000):
+    def send_data(self):
+        # TODO Allow setting port
         for nodemcu in self.data:
-            url = f'http://{nodemcu["ip"]}:{port}'
-            request = urllib.request.Request(url)
-            json_data = json.dumps(nodemcu['mode'])
-            json_data_bytes = json_data.encode('utf-8')
-            request.add_header('Content', json_data_bytes)
-            try:
-                urllib.request.urlopen(request)
-            except URLError:
-                pass
+            threading.Thread(target=send_request, args=(nodemcu,), kwargs={}).start()
 
     @staticmethod
     def color_convert(color):
