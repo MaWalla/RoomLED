@@ -51,11 +51,11 @@ class NodeMCUHandler:
 
         mode = {}
 
-        if values.get('mode') == 'single_color':
+        if values.get('mode') in ['single_color', 'random_lead_color']:
             mode = {
                 values.get('mode'): {'input_color': color1}
             }
-        elif values.get('mode') == 'gradient':
+        elif values.get('mode') in ['gradient', 'random_lead_gradient']:
             mode = {
                 values.get('mode'): {'input_color1': color1, 'input_color2': color2}
             }
