@@ -59,7 +59,7 @@ class NodeMCUHandler:
             mode = {
                 values.get('mode'): {'input_color1': color1, 'input_color2': color2}
             }
-        elif values.get('mode') == 'random':
+        elif values.get('mode') in {'off', 'random'}:
             mode = {
                 values.get('mode'): None
             }
