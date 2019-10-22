@@ -1,4 +1,5 @@
 """
+THIS STUFF RIGHT HERE IS NOT USED YET, BUT WILL BECOME RELEVANT IN THE FUTURE (ESPECIALLY WITH THE API
 Interprets the various things, the user will throw at this server
 """
 
