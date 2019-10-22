@@ -52,3 +52,8 @@ def send_css(path):
 @server.route('/img/<path:path>')
 def send_img(path):
     return send_from_directory('img', path)
+
+
+@server.route('/manifest/<path:path>')
+def send_manifest(path):
+    return send_from_directory('manifest', path)
