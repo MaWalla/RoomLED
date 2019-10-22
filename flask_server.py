@@ -1,4 +1,4 @@
-from flask import Flask, escape, request, render_template, redirect, send_from_directory
+from flask import Flask, request, render_template, redirect, send_from_directory
 from werkzeug.exceptions import BadRequest
 
 from utils.interpreter import ValidateJson
@@ -24,6 +24,7 @@ def led_form_handler():
     return redirect('/')
 
 
+#  NOT USED YET, WILL SERVE AS A FUTURE API ENDPOINT
 @server.route('/set-led', methods=['POST'])
 def set_led_handler():
     if request.is_json:
