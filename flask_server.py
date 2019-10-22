@@ -47,6 +47,7 @@ def send_js(path):
 def send_css(path):
     return send_from_directory('css', path)
 
+
 @server.route('/img/<path:path>')
 def send_img(path):
     return send_from_directory('img', path)
