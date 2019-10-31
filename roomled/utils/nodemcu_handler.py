@@ -3,16 +3,6 @@ import json
 import threading
 from urllib.error import URLError
 
-try:
-    with open('config.json', 'r') as config_file:
-        content = config_file.read()
-        config = json.loads(content)
-except FileNotFoundError:
-    print('No config found!')
-    print('Please create one by referring to the servers cheat-sheet page.')
-    print('Therefore the server will run but you won\'t be able to operate anything...')
-    config = None
-
 
 def send_request(data, port=5000):
         url = f'http://{data["ip"]}:{port}'

@@ -1,5 +1,4 @@
 (function($) {
-    const url = '/led-form';
     const button = $('#form-submit');
 
     button.on('click', function (event) {
@@ -9,6 +8,9 @@
         const form = $('#nodemcu-form')[0];
         fetch(url, {
             method: 'post',
+            headers: {
+                'X-CSRFToken': csrfToken,
+            },
             body: new FormData(form),
         }).then(response => {
 
