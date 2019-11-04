@@ -3,12 +3,12 @@
   "name": "RoomLED Server",
   "icons": [
     {
-      "src": "/img/pwa_icon.png",
+      "src": "static/img/pwa_icon.png",
       "type": "image/png",
       "sizes": "256x256"
     },
     {
-      "src": "/img/pwa_icon_144.png",
+      "src": "static/img/pwa_icon_144.png",
       "type": "image/png",
       "sizes": "144x144"
     }
@@ -18,5 +18,5 @@
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
-  "theme_color": "#343A40"
+  "theme_color": "#081012"
 }
