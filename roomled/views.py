@@ -3,6 +3,7 @@ import threading
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import FormView, TemplateView
 
@@ -11,7 +12,7 @@ from roomled.utils.nodemcu_handler import send_request
 from .forms import MainForm
 
 
-class MainView(LoginRequiredMixin, FormView):
+class BaseMainView(FormView):
     template_name = 'roomled/index.html'
     form_class = MainForm
 
@@ -63,6 +64,10 @@ class MainView(LoginRequiredMixin, FormView):
         return mode
 
 
+class MainView(LoginRequiredMixin, BaseMainView):
+    pass
+
+
 class CheatSheetView(TemplateView):
     template_name = 'roomled/cheat-sheet.html'
 
@@ -76,3 +81,18 @@ class UserLoginView(LoginView):
 
 class UserLogoutView(LogoutView):
     next_page = 'login'
+
+
+class GuestView(BaseMainView):
+
+    def dispatch(self, request, *args, **kwargs):
+        host, port = request.META.get('HTTP_HOST').split(':')
+        client = request.META.get('REMOTE_ADDR')
+        if '192.168.' in client or host == client:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            return redirect('not-guest')
+
+
+class NotGuestView(TemplateView):
+    template_name = 'roomled/not-guest.html'

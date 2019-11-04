@@ -1,0 +1,10 @@
+{% extends 'roomled/base.html' %} {% load i18n %}
+
+{% block content %}
+    <h4 class="text-center">{% trans "Nope, I don't think so" %}</h4>
+    <p class="text-center">{% trans "To control the LEDs as a guest, you need to be in my WIFI network." %}</p>
+    <p class="text-center">{% trans "If you dont have the WIFI password yet, you can ask nicely or try to bribe me with beer or stuff like that." %}</p>
+    <div class="text-center">
+        <a class="btn btn-dark" href="{% url 'main' %}">{% trans 'Home' %}</a>
+    </div>
+{% endblock %}
