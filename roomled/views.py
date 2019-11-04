@@ -34,6 +34,10 @@ class MainView(LoginRequiredMixin, FormView):
         mode = self.get_mode(data)
 
         for device in self.devices:
+            if device.inverted:
+                for key, value in mode.items():
+                    if value.get('input_color1') and value.get('input_color2'):
+                        value['input_color1'], value['input_color2'] = value['input_color2'], value['input_color1']
             threading.Thread(target=send_request, args=(device, mode), kwargs={}).start()
 
     @staticmethod

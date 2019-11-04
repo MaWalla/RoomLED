@@ -12,6 +12,7 @@ class Device(models.Model):
     port = models.IntegerField(_('port'))
     leds = models.IntegerField(_('leds'))
     name = models.CharField(_('name'), max_length=64)
+    inverted = models.BooleanField(_('inverted'))
 
     def __str__(self):
         return self.name
