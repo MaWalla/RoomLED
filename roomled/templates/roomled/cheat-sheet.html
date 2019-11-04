@@ -2,93 +2,94 @@
 
 {% block content %}
     <div class="container-fluid">
-        <h2>Cheat Sheet</h2>
-
-        <p>
-            Keys are, whatever you've specified in the config for their respective devices.
-            Values can be as follows:
-        </p>
-
-        <ul>
-            <li><p>
-                'individual'
-                to assign an individual colour value
-                for each led in the strip
-                {'nodemcu1': {'individual': {'0': [r, g, b], '1': '#12df63'}}}
-            </p></li>
-            <li><p>
-                'single_colour'
-                to colour the entire strip in 1 colour
-                e.g. {'nodemcu2': {'colour': '#abc'}}
-                both hex and rgb lists work like:
-                '#abcdef' or '#123' or [128, 32, 48]
-            </p></li>
-            <li><p>
-                'random'
-                well, it does what you'd expect.
-                Each run presents a new colourful result!
-                "{'nodemcu1': 'random'}"
-            </p></li>
-            <li><p>
-                'gradient'
-                input a list with 2 rgb values
-                e.g "{'nodemcu3': {'gradient': [[12, 242, 55], [11, 9, 233]]}}"
-                hex values can also be used:
-                "{'nodemcu1': {'gradient': ['#ff2519', '#3eb']}}"
-            </p></li>
-            <li><p>
-                'raveparty'
-                Not implemented yet, since MaWalla was busy playing Minecraft... anyway:
-                whoever is epileptical shouldn't get close to this
-                e.g "{'nodemcu3': {'raveparty': 30}}"
-                the number value is the delay between rgb flashes
-            </p></li>
-        </ul>
-
-        <p>You will need a config file with all devices, their type, ip address and LED count (and/or possibly some some other info)</p>
-        <p>
-            An example could look like this:
-            <br>
-            {<br>
-            "sideboard": {<br>
-                "type": "nodemcu",<br>
-                "ip": "192.168.5.100",<br>
-                "leds": 105<br>
-            },<br>
-            "window": {<br>
-                "type": "nodemcu",<br>
-                "ip": "192.168.5.101",<br>
-                "leds": 65<br>
-            },<br>
-            "computer": {<br>
-                "type": "computer",<br>
-                "ip": "192.168.5.10",<br>
-                "devices": {<br>
-                    "arduino": {<br>
-                    "type": "1d",<br>
-                    "leds": 32<br>
-                    },<br>
-                "blackwidow": {<br>
-                    "type": "2d",<br>
-                    "x": 22,<br>
-                    "y": 6<br>
-                    },<br>
-                "launchpad": {<br>
-                    "type": "2d",<br>
-                    "x": 8,<br>
-                    "y": 8<br>
-                    }<br>
-                }<br>
-            },<br>
-            "phone": {<br>
-                "type": "phone",<br>
-                "ip": "192.168.5.11"<br>
-                }<br>
-            }<br>
-
-
-            Note that right now, only the NodeMCUs are supported.
-        </p>
+{#        <h2>Cheat Sheet</h2>#}
+{##}
+{#        <p>#}
+{#            Keys are, whatever you've specified in the config for their respective devices.#}
+{#            Values can be as follows:#}
+{#        </p>#}
+{##}
+{#        <ul>#}
+{#            <li><p>#}
+{#                'individual'#}
+{#                to assign an individual colour value#}
+{#                for each led in the strip#}
+{#                {'nodemcu1': {'individual': {'0': [r, g, b], '1': '#12df63'}}}#}
+{#            </p></li>#}
+{#            <li><p>#}
+{#                'single_colour'#}
+{#                to colour the entire strip in 1 colour#}
+{#                e.g. {'nodemcu2': {'colour': '#abc'}}#}
+{#                both hex and rgb lists work like:#}
+{#                '#abcdef' or '#123' or [128, 32, 48]#}
+{#            </p></li>#}
+{#            <li><p>#}
+{#                'random'#}
+{#                well, it does what you'd expect.#}
+{#                Each run presents a new colourful result!#}
+{#                "{'nodemcu1': 'random'}"#}
+{#            </p></li>#}
+{#            <li><p>#}
+{#                'gradient'#}
+{#                input a list with 2 rgb values#}
+{#                e.g "{'nodemcu3': {'gradient': [[12, 242, 55], [11, 9, 233]]}}"#}
+{#                hex values can also be used:#}
+{#                "{'nodemcu1': {'gradient': ['#ff2519', '#3eb']}}"#}
+{#            </p></li>#}
+{#            <li><p>#}
+{#                'raveparty'#}
+{#                Not implemented yet, since MaWalla was busy playing Minecraft... anyway:#}
+{#                whoever is epileptical shouldn't get close to this#}
+{#                e.g "{'nodemcu3': {'raveparty': 30}}"#}
+{#                the number value is the delay between rgb flashes#}
+{#            </p></li>#}
+{#        </ul>#}
+{##}
+{#        <p>You will need a config file with all devices, their type, ip address and LED count (and/or possibly some some other info)</p>#}
+{#        <p>#}
+{#            An example could look like this:#}
+{#            <br>#}
+{#            {<br>#}
+{#            "sideboard": {<br>#}
+{#                "type": "nodemcu",<br>#}
+{#                "ip": "192.168.5.100",<br>#}
+{#                "leds": 105<br>#}
+{#            },<br>#}
+{#            "window": {<br>#}
+{#                "type": "nodemcu",<br>#}
+{#                "ip": "192.168.5.101",<br>#}
+{#                "leds": 65<br>#}
+{#            },<br>#}
+{#            "computer": {<br>#}
+{#                "type": "computer",<br>#}
+{#                "ip": "192.168.5.10",<br>#}
+{#                "devices": {<br>#}
+{#                    "arduino": {<br>#}
+{#                    "type": "1d",<br>#}
+{#                    "leds": 32<br>#}
+{#                    },<br>#}
+{#                "blackwidow": {<br>#}
+{#                    "type": "2d",<br>#}
+{#                    "x": 22,<br>#}
+{#                    "y": 6<br>#}
+{#                    },<br>#}
+{#                "launchpad": {<br>#}
+{#                    "type": "2d",<br>#}
+{#                    "x": 8,<br>#}
+{#                    "y": 8<br>#}
+{#                    }<br>#}
+{#                }<br>#}
+{#            },<br>#}
+{#            "phone": {<br>#}
+{#                "type": "phone",<br>#}
+{#                "ip": "192.168.5.11"<br>#}
+{#                }<br>#}
+{#            }<br>#}
+{##}
+{##}
+{#            Note that right now, only the NodeMCUs are supported.#}
+{#        </p>#}
+        <p>Out of service, the technician was informed.</p>
     </div>
 
 {% endblock %}

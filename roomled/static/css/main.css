@@ -20,3 +20,24 @@
 .form-group {
     height: 48px;
 }
+
+.form-center {
+    margin: auto;
+    max-width: min-content;
+}
+
+.form-label {
+    display: block;
+    margin-top: 1rem;
+}
+
+.form-input {
+    color: white;
+    background: #1c2123;
+    border: 4px solid #1c2123;
+    border-radius: 0.25rem;
+}
+
+.form-button {
+    margin-top: 1rem;
+}

@@ -89,6 +89,8 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
+LOGIN_URL = 'login'
+
 AUTH_USER_MODEL = 'roomled.RoomLEDUser'
 
 AUTH_PASSWORD_VALIDATORS = [

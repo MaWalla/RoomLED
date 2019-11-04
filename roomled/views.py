@@ -1,7 +1,9 @@
 import threading
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
+from django.urls import reverse
 from django.views.generic import FormView, TemplateView
 
 from roomled.models import Device
@@ -63,3 +65,14 @@ class MainView(LoginRequiredMixin, FormView):
 
 class CheatSheetView(TemplateView):
     template_name = 'roomled/cheat-sheet.html'
+
+
+class UserLoginView(LoginView):
+    template_name = 'roomled/login.html'
+
+    def get_success_url(self):
+        return reverse('main')
+
+
+class UserLogoutView(LogoutView):
+    next_page = 'login'
