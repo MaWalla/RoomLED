@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import MainView, CheatSheetView, UserLoginView, UserLogoutView, GuestView, NotGuestView
+from .views import MainView, CheatSheetView, UserLoginView, UserLogoutView, GuestView, NotGuestView, GeoFenceView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', MainView.as_view(), name='main'),
+    path('geofence/', GeoFenceView.as_view(), name='geofence'),
     path('guest/', GuestView.as_view(), name='guest'),
     path('nope/', NotGuestView.as_view(), name='not-guest'),
     path('cheat-sheet/', CheatSheetView.as_view(), name='cheat-sheet'),

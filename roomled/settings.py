@@ -128,3 +128,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+
+# API
+
+
+api_token_env = os.path.expandvars('${ROOMLED_TOKEN}')
+if api_token_env == '${ROOMLED_TOKEN}':
+    API_TOKEN = 'SampleToken'
+else:
+    API_TOKEN = api_token_env

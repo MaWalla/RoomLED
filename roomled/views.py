@@ -1,14 +1,16 @@
 import threading
 
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.views import View
 from django.views.generic import FormView, TemplateView
 
 from roomled.models import Device
-from roomled.utils.nodemcu_handler import send_request
+from roomled.utils.nodemcu_handler import send_request, send_data
 from .forms import MainForm
 
 
@@ -27,41 +29,35 @@ class BaseMainView(FormView):
         )
 
     def form_valid(self, form):
-        self.send_data(form.cleaned_data)
+        send_data(form.cleaned_data, Device.objects.all())
         return HttpResponse(status=200)
 
     def form_invalid(self, form):
         return HttpResponse(status=400)
 
-    def send_data(self, data):
-        mode = self.get_mode(data)
 
-        for device in self.devices:
-            if device.inverted:
-                for key, value in mode.items():
-                    if value.get('input_color1') and value.get('input_color2'):
-                        value['input_color1'], value['input_color2'] = value['input_color2'], value['input_color1']
-            threading.Thread(target=send_request, args=(device, mode), kwargs={}).start()
+class GeoFenceView(View):
+    def dispatch(self, request, *args, **kwargs):
+        if request.GET.get('token') == settings.API_TOKEN:
+            in_zone = self.clean_inzone(request.GET.get('inzone'))
+
+            if in_zone:
+                send_data({'mode': 'random'}, Device.objects.all())
+            else:
+                send_data({'mode': 'off'}, Device.objects.all())
+
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse(status=403)
 
     @staticmethod
-    def get_mode(data):
-        mode_name = data.get('mode')
-        mode = {}
-
-        if mode_name in ['single_color', 'random_lead_color']:
-            mode = {
-                mode_name: {'input_color': data.get('color1')}
-            }
-        elif mode_name in ['gradient', 'random_lead_gradient']:
-            mode = {
-                mode_name: {'input_color1': data.get('color1'), 'input_color2': data.get('color2')}
-            }
-        elif mode_name in {'off', 'random'}:
-            mode = {
-                mode_name: None
-            }
-
-        return mode
+    def clean_inzone(inzone):
+        if str(inzone).lower() == 'true':
+            return True
+        elif str(inzone).lower() == 'false':
+            return False
+        else:
+            return None
 
 
 class MainView(LoginRequiredMixin, BaseMainView):
