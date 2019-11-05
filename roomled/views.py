@@ -40,11 +40,14 @@ class GeoFenceView(View):
     def dispatch(self, request, *args, **kwargs):
         if request.GET.get('token') == settings.API_TOKEN:
             in_zone = self.clean_inzone(request.GET.get('inzone'))
+            devices = Device.objects.all()
+            mode = {f'device-{device.id}': 'on' for device in devices}
 
             if in_zone:
-                send_data({'mode': 'random'}, Device.objects.all())
+                mode['mode'] = 'random'
             else:
-                send_data({'mode': 'off'}, Device.objects.all())
+                mode['mode'] = 'off'
+            send_data(mode, devices)
 
             return HttpResponse(status=200)
         else:

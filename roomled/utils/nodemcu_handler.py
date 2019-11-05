@@ -8,12 +8,13 @@ def send_data(data, devices):
     mode = get_mode(data)
 
     for device in devices:
-        if device.inverted:
-            for key, value in mode.items():
-                if type(value) == dict:
-                    if value.get('input_color1') and value.get('input_color2'):
-                        value['input_color1'], value['input_color2'] = value['input_color2'], value['input_color1']
-        threading.Thread(target=send_request, args=(device, mode), kwargs={}).start()
+        if data.get(f'device-{device.id}') == 'on':
+            if device.inverted:
+                for key, value in mode.items():
+                    if type(value) == dict:
+                        if value.get('input_color1') and value.get('input_color2'):
+                            value['input_color1'], value['input_color2'] = value['input_color2'], value['input_color1']
+            threading.Thread(target=send_request, args=(device, mode), kwargs={}).start()
 
 
 def get_mode(data):
@@ -45,4 +46,6 @@ def send_request(device, mode):
     try:
         urllib.request.urlopen(request)
     except URLError:
+        pass
+    except ConnectionResetError:
         pass

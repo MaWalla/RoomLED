@@ -5,10 +5,10 @@
     {% for device in devices %}
         <div class="form-group row">
             <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-3">
-                <label for="{{ device.id }}">{{ device.name }}</label>
+                <label for="device-{{ device.id }}">{{ device.name }}</label>
             </div>
             <div class="col-6 col-sm-7 col-md-8 col-lg-8 col-xl-9">
-                <input id="{{ device.id }}" class="checkbox" checked name="{{ device.id }}" type="checkbox"/>
+                <input id="device-{{ device.id }}" class="checkbox" checked name="device-{{ device.id }}" type="checkbox"/>
             </div>
         </div>
     {% endfor %}
