@@ -1,0 +1,20 @@
+{% extends 'roomled/base.html' %} {% load i18n %}
+
+{% block content %}
+
+    <h4 class="text-center">{% trans 'Login' %}</h4>
+    <form class="form-center" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+                <label class="form-label" for="id_username">{% trans 'Username' %}</label>
+                <input class="form-input" id="id_username" type="text" name="username" autofocus="" required="">
+
+                <label class="form-label" for="id_password">{% trans 'Password' %}</label>
+                <input class="form-input" id="id_password" type="password" name="password" required="">
+
+                <button class="btn btn-dark form-button" type="submit">{% trans 'Login' %}</button>
+
+                <a class="btn btn-link form-button ml-4" href="{% url 'guest' %}">{% trans "I'm a guest" %}</a>
+
+    </form>
+
+{% endblock %}

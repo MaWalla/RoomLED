@@ -1,0 +1,59 @@
+{% extends 'roomled/base.html' %}
+
+{% block content %}
+    <form class="mt-5" id="nodemcu-form" action="{% url 'main' %}" method="post">
+    {% for device in devices %}
+        <div class="form-group row">
+            <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                <label for="device-{{ device.id }}">{{ device.name }}</label>
+            </div>
+            <div class="col-6 col-sm-7 col-md-8 col-lg-8 col-xl-9">
+                <input id="device-{{ device.id }}" class="checkbox" checked name="device-{{ device.id }}" type="checkbox"/>
+            </div>
+        </div>
+    {% endfor %}
+        <div class="form-group row">
+            <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                <label for="mode">Color Mode</label>
+            </div>
+            <div class="col-6 col-sm-7 col-md-8 col-lg-8 col-xl-9">
+                <select id="mode" class="input-scale" name="mode">
+                    <option value="individual">Individual</option>
+                    <option value="single_color" selected>Single Color</option>
+                    <option value="gradient">Gradient</option>
+                    <option value="random">Random</option>
+                    <option value="random_lead_color">Random Lead Color</option>
+                    <option value="random_lead_gradient">Random Lead Gradient</option>
+                    <option value="off">Off</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                <label for="color1">Color 1 (if required)</label>
+            </div>
+            <div class="col-6 col-sm-7 col-md-8 col-lg-8 col-xl-9">
+                <input id="color1" class="input-scale" value="#9FFF00" name="color1" type="color">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                <label for="color2">Color 2 (if required)</label>
+            </div>
+            <div class="col-6 col-sm-7 col-md-8 col-lg-8 col-xl-9">
+                <input id="color2" class="input-scale" value="#00ADFF" name="color2" type="color">
+            </div>
+        </div>
+
+        <button id="form-submit" class="btn btn-dark" type="submit">Set Color</button>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        var url = '{{ form_url }}';
+        var csrfToken = '{{ csrf_token }}';
+    </script>
+    {{ block.super }}
+{% endblock %}
