@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pwa',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,26 @@ if api_token_env == '${ROOMLED_TOKEN}':
     API_TOKEN = 'SampleToken'
 else:
     API_TOKEN = api_token_env
+
+
+# PWA
+
+
+PWA_APP_NAME = 'RoomLED'
+PWA_APP_DESCRIPTION = 'An app that controls LEDs :D'
+PWA_APP_THEME_COLOR = '#343A40'
+PWA_APP_BACKGROUND_COLOR = '#000000'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/',
+PWA_APP_ORIENTATION = 'portrait'
+PWA_APP_START_URL = '/'
+PWA_APP_ICONS = [
+    {
+        'src': f'{STATIC_URL}img/pwa_icon_144.png',
+        'sizes': '144x144'
+    },
+    {
+        'src': f'{STATIC_URL}img/pwa_icon.png',
+        'sizes': '256x256'
+    },
+]
