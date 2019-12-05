@@ -1,3 +1,4 @@
+import socket
 import threading
 
 from django.conf import settings
@@ -5,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import FormView, TemplateView
 
@@ -17,6 +18,7 @@ from .forms import MainForm
 class BaseMainView(FormView):
     template_name = 'roomled/index.html'
     form_class = MainForm
+    form_url = reverse_lazy('main')
 
     def __init__(self):
         self.devices = Device.objects.all()
@@ -25,6 +27,7 @@ class BaseMainView(FormView):
     def get_context_data(self, **kwargs):
         return super().get_context_data(
             devices=self.devices,
+            form_url=self.form_url,
             **kwargs,
         )
 
@@ -83,11 +86,13 @@ class UserLogoutView(LogoutView):
 
 
 class GuestView(BaseMainView):
+    form_url = reverse_lazy('guest')
 
     def dispatch(self, request, *args, **kwargs):
         host, port = request.META.get('HTTP_HOST').split(':')
+        host_ip = socket.gethostbyname(host)
         client = request.META.get('REMOTE_ADDR')
-        if '192.168.' in client or host == client:
+        if '192.168.' in client or host_ip == client:
             return super().dispatch(request, *args, **kwargs)
         else:
             return redirect('not-guest')

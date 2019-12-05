@@ -52,7 +52,7 @@
 
 {% block scripts %}
     <script>
-        var url = '{% url 'main' %}';
+        var url = '{{ form_url }}';
         var csrfToken = '{{ csrf_token }}';
     </script>
     {{ block.super }}

@@ -13,7 +13,6 @@
             },
             body: new FormData(form),
         }).then(response => {
-
             button.removeClass('btn-warning');
 
             if (response.status === 200) {
