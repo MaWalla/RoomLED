@@ -19,20 +19,13 @@ def send_data(data, devices):
 
 def get_mode(data):
     mode_name = data.get('mode')
-    mode = {}
+    mode = {'mode': mode_name}
 
     if mode_name in ['single_color', 'random_lead_color']:
-        mode = {
-            mode_name: {'input_color': data.get('color1')}
-        }
+        mode['input_color'] = data.get('color1')
     elif mode_name in ['gradient', 'random_lead_gradient']:
-        mode = {
-            mode_name: {'input_color1': data.get('color1'), 'input_color2': data.get('color2')}
-        }
-    elif mode_name in {'off', 'random'}:
-        mode = {
-            mode_name: None
-        }
+        mode['input_color1'] = data.get('color1'),
+        mode['input_color2'] = data.get('color2'),
 
     return mode
 
