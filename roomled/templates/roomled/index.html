@@ -23,7 +23,7 @@
                     <option value="random">Random</option>
                     <option value="random_lead_color">Random Lead Color</option>
                     <option value="random_lead_gradient">Random Lead Gradient</option>
-                    <option value="off">Off</option>
+                    <option value="off">Off</option> <!-- TODO Make this a button -->
                 </select>
             </div>
         </div>
@@ -45,7 +45,15 @@
             </div>
         </div>
 
-        <button id="form-submit" class="btn btn-dark" type="submit">Set Color</button>
+        <div class="form-group row">
+            <div class="col-6 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                <button id="form-submit" class="btn btn-dark" type="submit">Set Color</button>
+            </div>
+            <div class="col-6 col-sm-7 col-md-8 col-lg-8 col-xl-9">
+                <button id="off-button" class="btn btn-dark" type="button">All Off</button>
+            </div>
+        </div>
+
     </form>
 {% endblock %}
 
