@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import MainView, CheatSheetView, UserLoginView, UserLogoutView, GuestView, NotGuestView, GeoFenceView
+from .views import MainView, UserLoginView, UserLogoutView, GuestView, NotGuestView, GeoFenceView
 
 urlpatterns = [
     url('', include('pwa.urls')),
@@ -26,7 +26,6 @@ urlpatterns = [
     path('geofence/', GeoFenceView.as_view(), name='geofence'),
     path('guest/', GuestView.as_view(), name='guest'),
     path('nope/', NotGuestView.as_view(), name='not-guest'),
-    path('cheat-sheet/', CheatSheetView.as_view(), name='cheat-sheet'),
     path('login/', UserLoginView.as_view(), name='login'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
 ]

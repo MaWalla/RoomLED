@@ -70,10 +70,6 @@ class MainView(LoginRequiredMixin, BaseMainView):
     pass
 
 
-class CheatSheetView(TemplateView):
-    template_name = 'roomled/cheat-sheet.html'
-
-
 class UserLoginView(LoginView):
     template_name = 'roomled/login.html'
 
